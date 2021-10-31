@@ -1,3 +1,8 @@
 package com.example.ukmaspringboot.repos;
 
-public interface UserRepository extends CrudRepository<>{}
+import com.example.ukmaspringboot.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,Long> {
+
+}

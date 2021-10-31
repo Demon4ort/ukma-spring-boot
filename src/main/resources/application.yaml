@@ -1,8 +1,11 @@
 spring:
+  server:
+    port: 8080
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
-    username: trokhym
-    password: babych
+    username: user1
+    password: user1
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
