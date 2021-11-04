@@ -1,9 +1,8 @@
 package com.example.ukmaspringboot.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -12,6 +11,17 @@ public class Course {
     private Long courseId;
     private String name;
     private String teacher;
+
+    public Set<User> getEnrolledUsers() {
+        return enrolledUsers;
+    }
+    @ManyToMany
+    @JoinTable(
+            name = "user_enrolled",
+            joinColumns = @JoinColumn(name = "courseId"),
+            inverseJoinColumns = @JoinColumn(name = "userId")
+    )
+    private Set<User> enrolledUsers = new HashSet<>();
 
     public Course(String name, String teacher, String year) {
         this.name = name;

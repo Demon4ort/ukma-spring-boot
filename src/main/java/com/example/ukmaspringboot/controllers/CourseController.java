@@ -3,7 +3,9 @@ package com.example.ukmaspringboot.controllers;
 import com.example.ukmaspringboot.entities.Course;
 import com.example.ukmaspringboot.entities.User;
 
+import com.example.ukmaspringboot.repos.CourseRepository;
 import com.example.ukmaspringboot.service.CourseService;
+import com.example.ukmaspringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,8 @@ import java.util.List;
     public class CourseController {
         @Autowired
         private CourseService courseService;
+        @Autowired
+        private UserService userService;
 
         @PostMapping("/addCourse")
         public Course addCourse(@RequestBody Course course) {
@@ -34,9 +38,20 @@ import java.util.List;
             return courseService.updateCourse(course);
         }
 
-        @DeleteMapping("/user/{id}")
+        @DeleteMapping("/course/{id}")
         public String deleteCourse(@PathVariable Long id) {
             return courseService.deleteCourseById(id);
+        }
+
+        @PutMapping("/{courseId}/students/{userId}")
+        Course addUserToCourse(
+                @PathVariable Long courseId,
+                @PathVariable Long userId
+        ) {
+            Course course = courseService.getCourseById(courseId);
+            User user = userService.getUserById(userId);
+            course.getEnrolledUsers().add(user);
+            return courseService.createCourse(course);
         }
     }
 

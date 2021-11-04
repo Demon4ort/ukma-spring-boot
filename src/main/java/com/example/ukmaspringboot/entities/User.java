@@ -1,10 +1,11 @@
 package com.example.ukmaspringboot.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -19,6 +20,11 @@ public class User {
     private String year;
     private String role;
     private String password;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "enrolledUsers")
+    private Set<Course> subjects = new HashSet<>();
+
 
     public User() {}
 
@@ -94,6 +100,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public Set<Course> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Course> subjects) {
+        this.subjects = subjects;
     }
 
     @Override
