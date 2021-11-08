@@ -21,10 +21,22 @@ public class User {
     private String role;
     private String password;
 
+
+//    @OneToMany(mappedBy = "user")
+//    Set<Enrollment> enrolments;
+//
+
     @JsonIgnore
     @ManyToMany(mappedBy = "enrolledUsers")
-    private Set<Course> subjects = new HashSet<>();
+    private Set<Lesson> lessons = new HashSet<>();
 
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 
     public User() {}
 
@@ -101,13 +113,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Set<Course> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Set<Course> subjects) {
-        this.subjects = subjects;
-    }
+//    public Set<Course> getSubjects() {
+//        return subjects;
+//    }
+//
+//    public void setSubjects(Set<Course> subjects) {
+//        this.subjects = subjects;
+//    }
 
     @Override
     public String toString() {

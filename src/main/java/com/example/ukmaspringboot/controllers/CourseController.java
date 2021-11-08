@@ -50,7 +50,7 @@ import java.util.List;
         ) {
             Course course = courseService.getCourseById(courseId);
             User user = userService.getUserById(userId);
-            course.getEnrolledUsers().add(user);
+          //  course.enrollUser(user);
             return courseService.createCourse(course);
         }
     }

@@ -1,7 +1,6 @@
 package com.example.ukmaspringboot.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,17 +10,25 @@ public class Course {
     private Long courseId;
     private String name;
     private String teacher;
+    private String year;
 
-    public Set<User> getEnrolledUsers() {
-        return enrolledUsers;
-    }
-    @ManyToMany
-    @JoinTable(
-            name = "user_enrolled",
-            joinColumns = @JoinColumn(name = "courseId"),
-            inverseJoinColumns = @JoinColumn(name = "userId")
-    )
-    private Set<User> enrolledUsers = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "lesson")
+    Set<Lesson> lessons;
+
+
+
+//    public Set<User> getEnrolledUsers() {
+//        return enrolledUsers;
+//    }
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_enrolled",
+//            joinColumns = @JoinColumn(name = "courseId"),
+//            inverseJoinColumns = @JoinColumn(name = "userId")
+//    )
+//    private Set<User> enrolledUsers = new HashSet<>();
 
     public Course(String name, String teacher, String year) {
         this.name = name;
@@ -63,6 +70,23 @@ public class Course {
     public void setYear(String year) {
         this.year = year;
     }
+//    public void enrollUser(User user){
+//            enrolledUsers.add(user);
+//    }
 
-    private String year;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
