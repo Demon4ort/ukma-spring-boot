@@ -47,6 +47,20 @@ public class LessonController {
         return lessonService.deleteLessonById(id);
     }
 
+
+    @PutMapping("/{lessonId}/courses/{courseId}")
+    Lesson addLessonToCourse(
+            @PathVariable Long lessonId,
+            @PathVariable Long courseId
+    ) {
+        Lesson lesson = lessonService.getLessonById(lessonId);
+        Course course = courseService.getCourseById(courseId);
+        lesson.setCourse(course);
+        return lessonService.createLesson(lesson);
+    }
+
+
+
     @PutMapping("/{lessonId}/users/{userId}")
     Lesson addUserToLesson(
             @PathVariable Long lessonId,

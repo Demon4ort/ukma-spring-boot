@@ -4,6 +4,8 @@ package com.example.ukmaspringboot.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,13 +14,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
+    @NotBlank(message = "Name cannot be empty")
     private String name;
+    @NotBlank(message = "Surname cannot be empty")
     private String surname;
     private String patronymic;
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email is not correct")
     private String email;
 //    private Long
+    @NotBlank(message = "Year cannot be empty")
     private String year;
+    @NotBlank(message = "Role cannot be empty")
     private String role;
+    @NotBlank(message = "Password cannot be empty")
     private String password;
 
 

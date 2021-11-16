@@ -13,8 +13,9 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lessonId;
     private String day;
-    private LocalTime time;
-    private String group;
+    private String time;
+    private String groupNumber;
+
 
     @ManyToOne
     @JoinColumn(name = "courseId")
@@ -35,10 +36,10 @@ public class Lesson {
     public Lesson() {
     }
 
-    public Lesson(String day, LocalTime time, String group, Course course, Set<User> enrolledUsers) {
+    public Lesson(String day, String time, String group, Course course, Set<User> enrolledUsers) {
         this.day = day;
         this.time = time;
-        this.group = group;
+        this.groupNumber = group;
         this.course = course;
         this.enrolledUsers = enrolledUsers;
     }
@@ -59,20 +60,20 @@ public class Lesson {
         this.day = day;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     public String getGroup() {
-        return group;
+        return groupNumber;
     }
 
     public void setGroup(String group) {
-        this.group = group;
+        this.groupNumber = group;
     }
 
     public Course getCourse() {
