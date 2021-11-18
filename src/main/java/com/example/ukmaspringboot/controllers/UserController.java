@@ -19,13 +19,9 @@ public class UserController {
         User savedUser = userService.createUser(user);
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
-//    @PostMapping("/addUser")
-//    public User addUser(@RequestBody User user) {
-//        return userService.createUser(user);
-//    }
 
     @PostMapping("/addUsers")
-    public List<User> addUsers(@RequestBody List<User> users) {
+    public List<User> addUsers(@Valid @RequestBody List<User> users) {
         return userService.createUsers(users);
     }
 
@@ -40,7 +36,7 @@ public class UserController {
     }
 
     @PutMapping("/updateuser")
-    public User updateUser(@RequestBody User user) {
+    public User updateUser(@Valid @RequestBody User user) {
         return userService.updateUser(user);
     }
 

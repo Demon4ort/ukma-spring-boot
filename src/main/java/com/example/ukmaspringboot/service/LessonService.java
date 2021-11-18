@@ -1,9 +1,10 @@
 package com.example.ukmaspringboot.service;
 
-import com.example.ukmaspringboot.entities.Course;
 import com.example.ukmaspringboot.entities.Lesson;
-import com.example.ukmaspringboot.repos.CourseRepository;
 import com.example.ukmaspringboot.repos.LessonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class LessonService {
     @Autowired
     private LessonRepository lessonRepository;
 
+    private Logger logger = LoggerFactory.getLogger(LessonService.class);
 
     public Lesson createLesson(Lesson lesson) {
         return lessonRepository.save(lesson);
@@ -29,6 +31,7 @@ public class LessonService {
     }
 
     public Lesson updateLesson(Lesson lesson) {
+        MDC.put("id", lesson.getLessonId().toString());
         Lesson oldLesson=null;
         Optional<Lesson> optionalLesson=lessonRepository.findById(lesson.getLessonId());
         if(optionalLesson.isPresent()) {
@@ -38,7 +41,9 @@ public class LessonService {
             oldLesson.setGroup(lesson.getGroup());
             oldLesson.setTime(lesson.getTime());
             oldLesson.setEnrolledUsers(lesson.getEnrolledUsers());
+            logger.debug("Updated lesson");
         }else {
+            logger.error("Lesson not found");
             return new Lesson();
         }
         return oldLesson;
@@ -46,6 +51,7 @@ public class LessonService {
 
     public String deleteLessonById(Long id) {
         lessonRepository.deleteById(id);
+        logger.debug("Deleted lesson");
         return "Lesson got deleted";
     }
 }
