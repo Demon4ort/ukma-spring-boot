@@ -32,19 +32,18 @@ public class LessonService {
 
     public Lesson updateLesson(Lesson lesson) {
         MDC.put("id", lesson.getLessonId().toString());
-        Lesson oldLesson=null;
-        Optional<Lesson> optionalLesson=lessonRepository.findById(lesson.getLessonId());
-        if(optionalLesson.isPresent()) {
-            oldLesson=optionalLesson.get();
+        Lesson oldLesson = new Lesson();
+        Optional<Lesson> optionalLesson = lessonRepository.findById(lesson.getLessonId());
+        if (optionalLesson.isPresent()) {
+            oldLesson = optionalLesson.get();
             oldLesson.setCourse(lesson.getCourse());
             oldLesson.setDay(lesson.getDay());
             oldLesson.setGroup(lesson.getGroup());
             oldLesson.setTime(lesson.getTime());
             oldLesson.setEnrolledUsers(lesson.getEnrolledUsers());
             logger.debug("Updated lesson");
-        }else {
+        } else {
             logger.error("Lesson not found");
-            return new Lesson();
         }
         return oldLesson;
     }
