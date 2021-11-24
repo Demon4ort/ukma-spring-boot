@@ -20,6 +20,7 @@ public class UserService {
     private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public User createUser(User user) {
+
         return userRepository.save(user);
     }
 
