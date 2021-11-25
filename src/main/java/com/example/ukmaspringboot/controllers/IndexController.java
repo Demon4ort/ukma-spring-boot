@@ -22,4 +22,8 @@ public class IndexController {
         model.addAttribute("user", new User());
         return "reg";
     }
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
+    }
 }

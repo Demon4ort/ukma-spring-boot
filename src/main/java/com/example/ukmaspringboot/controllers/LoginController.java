@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
 
@@ -28,6 +29,9 @@ public class LoginController {
 //    }
     @PostMapping("/registration")
     public String addUser(@Valid @ModelAttribute User user){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         User savedUser = userService.createUser(user);
         System.out.println(new ResponseEntity<User>(savedUser, HttpStatus.CREATED));
         return "redirect:login";
