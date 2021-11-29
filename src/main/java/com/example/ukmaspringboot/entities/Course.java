@@ -13,7 +13,6 @@ public class Course {
     private String year;
 
 
-
     @OneToMany(mappedBy = "course")
     Set<Lesson> lessons;
 
