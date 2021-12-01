@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
@@ -30,10 +31,31 @@ public class User {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-//    @OneToMany(mappedBy = "user")
-//    Set<Enrollment> enrolments;
-//
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Transient
+    private String passwordConfirm;
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+
 
     @JsonIgnore
     @ManyToMany(mappedBy = "enrolledUsers")
@@ -115,9 +137,14 @@ public class User {
         this.role = role;
     }
 
+
+
     public String getPassword() {
         return password;
     }
+
+
+
 
     public void setPassword(String password) {
         this.password = password;

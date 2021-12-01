@@ -31,20 +31,24 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.5.12'
     implementation 'org.thymeleaf:thymeleaf:3.0.12.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6'
+    implementation 'junit:junit:4.13.1'
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.6'
     runtimeOnly 'com.h2database:h2:1.4.200'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.6'
-    testImplementation 'org.springframe work.boot:spring-boot-starter-test:2.5.6'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
-    testCompileOnly 'org.springframework.boot:spring-boot-starter-test'
-    testCompileOnly 'org.junit.jupiter:junit-jupiter:5.4.0'
-
+   // testCompileOnly 'org.springframework.boot:spring-boot-starter-test'
+   // testCompileOnly 'org.junit.jupiter:junit-jupiter:5.4.0'
+   // testCompileOnly 'org.junit.platform:junit-platform-runner:1.0.0-M2'
+  //  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+   // testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
 }
 
 test {
     useJUnitPlatform()
 }
+

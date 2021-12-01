@@ -2,14 +2,17 @@ package com.example.ukmaspringboot.entities;
 
 import javax.persistence.*;
 import java.util.Set;
-
+@Table(name = "courses")
 @Entity
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long courseId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "teacher")
     private String teacher;
+    @Column(name = "year")
     private String year;
 
 
@@ -36,6 +39,9 @@ public class Course {
     }
 
     public Course() {
+    }
+
+    public Course(String name) {
     }
 
     public Long getCourseId() {

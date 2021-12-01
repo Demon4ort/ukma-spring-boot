@@ -29,6 +29,13 @@ public class Lesson {
     )
     private Set<User> enrolledUsers = new HashSet<>();
 
+    public Lesson(String day, String time, String groupNumber, Course course) {
+        this.day = day;
+        this.time = time;
+        this.groupNumber = groupNumber;
+        this.course = course;
+    }
+
     public void enrollUser(User user){
           enrolledUsers.add(user);
     }
