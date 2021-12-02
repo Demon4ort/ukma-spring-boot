@@ -17,7 +17,7 @@ public class LoginService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        if (userRepository.findById(user.getUserId()).isPresent()) {
+        if (userRepository.findUserByEmail(user.getEmail()) != null) {
             throw new Exception("user already exists");
         } else {
             userRepository.save(user);
