@@ -25,7 +25,7 @@
                     <h2> Menu</h2>
                 </a>
                 <hr>
-                <div class="dropdown">
+                <div class="dropdown" sec:authorize="hasRole('user')">
                     <a class="d-flex align-items-center font-lBrwn text-decoration-none dropdown-toggle"
                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <h4 class="fs-4 p-2">
@@ -141,6 +141,7 @@
                             Edit
                         </a>
                     </li>
+                    <div sec:authorize="hasRole('admin')">
                     <h4 class="fs-4 p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
@@ -180,22 +181,23 @@
                             Update course
                         </a>
                     </li>
+                    </div>
                 </ul>
                 <hr>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center font-lBrwn text-decoration-none dropdown-toggle"
-                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                       id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd"
                                   d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
-                        <h2 class="fs-4 text-center p-2">Name</h2>
+                        <h2 class="fs-4 text-center p-2"><span sec:authentication="name"></span></h2>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu text-small shadow bg-veryDB" aria-labelledby="dropdownUser1">
+                    <ul class="dropdown-menu dropdown-menu text-small shadow bg-veryDB" aria-labelledby="dropdownUser">
                         <li>
-                            <a href="#" class="nav-link font-lBrwn hoverA">
+                            <a href="/logout" class="nav-link font-lBrwn hoverA">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -218,7 +220,6 @@
             <div class="container-fluid" id="jsGrid1">
 
                 <!-- show data here -->
-                Logged user: <span sec:authentication="name"></span>
                 Roles: <span sec:authentication="principal.authorities"></span>
 
             </div>
