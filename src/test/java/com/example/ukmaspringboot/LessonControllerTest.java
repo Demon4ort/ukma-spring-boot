@@ -21,28 +21,34 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@WebMvcTest(LessonController.class)
+@WebMvcTest(LessonController.class)
 public class LessonControllerTest {
-//    @MockBean
-//    private LessonController lessonController;
-//    @Autowired
-//    private MockMvc mvc;
+    @MockBean
+    private LessonController lessonController;
+    @Autowired
+    private MockMvc mvc;
+    @Test
+    public void givenLessons_whenGetLessons_thenReturnJsonArray() throws Exception{
+
+        Course cor1 = new Course("name1", "teacher1", "1");
+        Lesson lesson = new Lesson("Monday", "12:00", "3", cor1 );
+
+
+        List<Lesson> allLessons = Arrays.asList(lesson);
+
+
+        given(lessonController.getAllLessons()).willReturn(allLessons);
+
+        mvc.perform(MockMvcRequestBuilders.get("/lessons/lessons")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
 //    @Test
-//    public void givenLessons_whenGetLessons_thenReturnJsonArray() throws Exception{
-//
-//        Course cor1 = new Course("name1", "teacher1", "1");
-//        Lesson lesson = new Lesson("Monday", "12:00", "3", cor1 );
-//
-//
-//        List<Lesson> allLessons = Arrays.asList(lesson);
-//
-//
-//        given(lessonController.getAllLessons()).willReturn(allLessons);
-//
-//        mvc.perform(MockMvcRequestBuilders.get("/lessons/lessons")
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)));
+//    public void givenRegistrationUri_whenMockMVC_thenStatusIsOk() throws Exception {
+//        mvc.perform(MockMvcRequestBuilders.get("/registration"))
+//                .andExpect(MockMvcResultMatchers.status().isCreated());
 //    }
 
 }
