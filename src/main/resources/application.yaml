@@ -8,7 +8,9 @@ spring:
     password: user1
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
     hibernate:
       ddl-auto: create
+    defer-datasource-initialization: true
   profiles:
     active: dev

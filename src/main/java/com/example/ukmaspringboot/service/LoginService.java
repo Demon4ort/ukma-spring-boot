@@ -1,6 +1,7 @@
 package com.example.ukmaspringboot.service;
 
 import com.example.ukmaspringboot.entities.User;
+import com.example.ukmaspringboot.repos.RoleRepository;
 import com.example.ukmaspringboot.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,8 @@ public class LoginService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     public User register(User user) throws Exception {

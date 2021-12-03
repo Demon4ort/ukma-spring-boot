@@ -6,9 +6,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_role")
+@Table(name = "ROLES")
 public class Role implements GrantedAuthority {
     @Id
+    @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Transient
@@ -24,6 +26,10 @@ public class Role implements GrantedAuthority {
 
     public Role(Long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Role(String name) {
         this.name = name;
     }
 
