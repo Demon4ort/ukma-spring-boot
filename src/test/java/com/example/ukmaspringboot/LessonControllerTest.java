@@ -45,10 +45,6 @@ public class LessonControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)));
     }
 
-//    @Test
-//    public void givenRegistrationUri_whenMockMVC_thenStatusIsOk() throws Exception {
-//        mvc.perform(MockMvcRequestBuilders.get("/registration"))
-//                .andExpect(MockMvcResultMatchers.status().isCreated());
-//    }
+
 
 }
