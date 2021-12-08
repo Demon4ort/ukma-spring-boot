@@ -36,11 +36,12 @@ public class LessonService {
         Optional<Lesson> optionalLesson = lessonRepository.findById(lesson.getLessonId());
         if (optionalLesson.isPresent()) {
             oldLesson = optionalLesson.get();
-            oldLesson.setCourse(lesson.getCourse());
+            oldLesson.setCourseName(lesson.getCourseName());
             oldLesson.setDay(lesson.getDay());
             oldLesson.setGroup(lesson.getGroup());
             oldLesson.setTime(lesson.getTime());
-            oldLesson.setEnrolledUsers(lesson.getEnrolledUsers());
+            oldLesson.setTeacher(lesson.getTeacher());
+            oldLesson.setYear(lesson.getYear());
             logger.debug("Updated lesson");
         } else {
             logger.error("Lesson not found");

@@ -34,18 +34,6 @@ public class User implements UserDetails {
 
     private Role role;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "enrolledUsers")
-    private Set<Lesson> lessons = new HashSet<>();
-
-    public Set<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(Set<Lesson> lessons) {
-        this.lessons = lessons;
-    }
-
     public User() {}
 
     public User(String name, String surname, String patronymic, String email, String year, Role role, String password) {
