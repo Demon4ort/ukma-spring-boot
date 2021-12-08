@@ -38,12 +38,6 @@
             <label for="floatingInput">Email</label>
         </div>
         <br>
-<!--        <select name="speciality" class="form-select" aria-label="Default select example" required>-->
-<!--            <option selected>Choose your speciality</option>-->
-<!--            <option value="cs">Computer Science</option>-->
-<!--            <option value="am">Applied Mathematics</option>-->
-<!--            <option value="se">Software engineering</option>-->
-<!--        </select>-->
         <select th:field="*{year}" name="year" class="form-select" aria-label="Default select example" required>
             <option selected value="null">Choose your year</option>
             <option value="1bp">1BP</option>
@@ -53,7 +47,7 @@
             <option value="1mp">1MP</option>
             <option value="2mp">2MP</option>
         </select>
-        <select th:field="*{roles}" name="role" class="form-select" aria-label="Default select example" required>
+        <select th:field="*{roles}" name="role" class="form-select" aria-label="Default select example" required id="role">
             <option selected value="null">Choose your role</option>
             <option value="user">user</option>
             <option value="admin">admin</option>
@@ -79,7 +73,7 @@
 <script src="js/hover.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-<script src="js//sendUserData/reg.js"></script>
+<script src="js/sendUserData/reg.js"></script>
 </body>
 
 </html>

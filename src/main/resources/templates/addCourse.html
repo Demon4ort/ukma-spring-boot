@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add course</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/stylesIndex.css" rel="stylesheet">
+    <link href="css/midLayout.css" rel="stylesheet">
+</head>
+
+<body>
+<main class="form-signin text-center">
+    <form id="courseForm">
+        <img src="images/logoTrans.png" alt="logo" width="200" class="p-lg-5">
+        <h2 class="font-veryDB"> Please fill all fields</h2>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name"
+                   required>
+            <label for="floatingInput">Name</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput1" placeholder="Teacher`s name" name="teacher"
+                   required>
+            <label for="floatingInput1">Teacher`s name</label>
+        </div>
+        <select name="year" class="form-select" aria-label="Default select example" required>
+            <option selected value="null">Choose your year</option>
+            <option value="1bp">1BP</option>
+            <option value="2bp">2BP</option>
+            <option value="3bp">3BP</option>
+            <option value="4bp">4BP</option>
+            <option value="1mp">1MP</option>
+            <option value="2mp">2MP</option>
+        </select>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg hoverButton" type="submit">Sign in</button>
+    </form>
+    </div>
+</main>
+<script src="js/jquery.js"></script>
+<script src="js/hover.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+</body>
+
+</html>
