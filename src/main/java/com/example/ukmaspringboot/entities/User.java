@@ -30,36 +30,31 @@ public class User implements UserDetails {
     private String year;
     @NotBlank(message = "Password cannot be empty")
     private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "enrolledUsers")
-    private Set<Lesson> lessons = new HashSet<>();
-
-    public Set<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(Set<Lesson> lessons) {
-        this.lessons = lessons;
-    }
+    @NotBlank(message = "Role cannot be empty")
+    private String role;
 
     public User() {}
 
-    public User(String name, String surname, String patronymic, String email, String year, Set<Role> roles, String password) {
+    public User(String name, String surname, String patronymic, String email, String year, String role, String password) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.email = email;
         this.year = year;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     public Long getUserId() {
         return userId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setUserId(Long userId) {
@@ -106,17 +101,10 @@ public class User implements UserDetails {
         this.year = year;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRole(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return null;
     }
 
     public String getPassword() {
@@ -125,28 +113,29 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getEmail();
+        return null;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -161,7 +150,7 @@ public class User implements UserDetails {
                 ", patronymic='" + patronymic + '\'' +
                 ", email='" + email + '\'' +
                 ", year='" + year + '\'' +
-                ", role='" + roles + '\'' +
+                ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

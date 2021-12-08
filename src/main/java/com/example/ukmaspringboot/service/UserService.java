@@ -43,6 +43,7 @@ public class UserService {
             oldUser=optionaluser.get();
             oldUser.setName(user.getName());
             oldUser.setSurname(user.getSurname());
+            oldUser.setRole(user.getRole());
             userRepository.save(oldUser);
             logger.debug("Updated user");
         }else {

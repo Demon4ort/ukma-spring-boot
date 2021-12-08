@@ -15,33 +15,51 @@ public class Lesson {
     private String day;
     private String time;
     private String groupNumber;
-
-
-    @ManyToOne
-    @JoinColumn(name = "courseId")
-    Course course;
-
-        @ManyToMany
-        @JoinTable(
-            name = "user_enrolled",
-            joinColumns = @JoinColumn(name = "lessonId"),
-            inverseJoinColumns = @JoinColumn(name = "userId")
-    )
-    private Set<User> enrolledUsers = new HashSet<>();
-
-    public void enrollUser(User user){
-          enrolledUsers.add(user);
-    }
+    private String courseName;
+    private String teacher;
+    private String year;
 
     public Lesson() {
     }
 
-    public Lesson(String day, String time, String group, Course course, Set<User> enrolledUsers) {
+    public Lesson(String day, String time, String group, String course, Set<User> enrolledUsers) {
         this.day = day;
         this.time = time;
         this.groupNumber = group;
-        this.course = course;
-        this.enrolledUsers = enrolledUsers;
+        this.courseName = course;
+    }
+
+
+    public String getGroupNumber() {
+        return groupNumber;
+    }
+
+    public void setGroupNumber(String groupNumber) {
+        this.groupNumber = groupNumber;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public Long getLessonId() {
@@ -76,19 +94,5 @@ public class Lesson {
         this.groupNumber = group;
     }
 
-    public Course getCourse() {
-        return course;
-    }
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public Set<User> getEnrolledUsers() {
-        return enrolledUsers;
-    }
-
-    public void setEnrolledUsers(Set<User> enrolledUsers) {
-        this.enrolledUsers = enrolledUsers;
-    }
 }
