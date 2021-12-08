@@ -3,6 +3,7 @@ package com.example.ukmaspringboot.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -31,8 +32,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private Role role;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "enrolledUsers")
@@ -48,14 +48,14 @@ public class User implements UserDetails {
 
     public User() {}
 
-    public User(String name, String surname, String patronymic, String email, String year, Set<Role> roles, String password) {
+    public User(String name, String surname, String patronymic, String email, String year, Role role, String password) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.email = email;
         this.year = year;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     public Long getUserId() {
@@ -106,17 +106,17 @@ public class User implements UserDetails {
         this.year = year;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRole(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return Set.of(new SimpleGrantedAuthority(role.toString()));
     }
 
     public String getPassword() {
@@ -161,7 +161,7 @@ public class User implements UserDetails {
                 ", patronymic='" + patronymic + '\'' +
                 ", email='" + email + '\'' +
                 ", year='" + year + '\'' +
-                ", role='" + roles + '\'' +
+                ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

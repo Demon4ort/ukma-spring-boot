@@ -47,23 +47,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/users/**").hasAnyAuthority("admin")
-                .antMatchers("/courses/**").hasAnyAuthority("admin")
-                .antMatchers("/lessons/**").hasAnyAuthority("admin")
-                .antMatchers("/home").authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
+        http.formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/home")
-                .permitAll()
                 .and()
                 .logout().invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").permitAll()
+                .logoutSuccessUrl("/")
                 .and()
                 .addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
     }
