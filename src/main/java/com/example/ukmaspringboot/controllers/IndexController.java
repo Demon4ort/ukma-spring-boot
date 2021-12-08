@@ -17,4 +17,6 @@ public class IndexController {
     public String home(){
         return "home";
     }
+    @RequestMapping("/user")
+    public String user(){return "user";}
 }
