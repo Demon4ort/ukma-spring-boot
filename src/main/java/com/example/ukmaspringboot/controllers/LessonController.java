@@ -26,6 +26,7 @@ public class LessonController {
         return lessonService.getLessonById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:8088")
     @GetMapping("/lessons")
     public List<Lesson> getAllLessons() {
         return lessonService.getLessons();
