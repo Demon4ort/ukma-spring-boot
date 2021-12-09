@@ -13,9 +13,12 @@ public class IndexController {
     public String login(){
         return "login";
     }
-
     @RequestMapping("/home")
     public String home(){
         return "home";
+    }
+    @RequestMapping("/admin")
+    public  String admin(){
+        return "admin";
     }
 }

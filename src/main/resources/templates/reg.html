@@ -38,12 +38,6 @@
             <label for="floatingInput">Email</label>
         </div>
         <br>
-<!--        <select name="speciality" class="form-select" aria-label="Default select example" required>-->
-<!--            <option selected>Choose your speciality</option>-->
-<!--            <option value="cs">Computer Science</option>-->
-<!--            <option value="am">Applied Mathematics</option>-->
-<!--            <option value="se">Software engineering</option>-->
-<!--        </select>-->
         <select th:field="*{year}" name="year" class="form-select" aria-label="Default select example" required>
             <option selected value="null">Choose your year</option>
             <option value="1bp">1BP</option>
@@ -68,7 +62,6 @@
         <br>
         <button class="w-100 btn btn-lg hoverButton">Create</button>
     </form>
-    <a href="@{/login}" class="text-muted">Login</a>
     <br>
     <br>
     <br>

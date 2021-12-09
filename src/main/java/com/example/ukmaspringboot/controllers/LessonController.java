@@ -15,7 +15,7 @@ public class LessonController {
 
     @Autowired
     private LessonService lessonService;
-
+    @CrossOrigin(origins = "http://localhost:8088")
     @PostMapping("/addLesson")
     public Lesson addLesson(@RequestBody Lesson lesson) {
         return lessonService.createLesson(lesson);

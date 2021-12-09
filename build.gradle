@@ -39,7 +39,7 @@ dependencies {
     testImplementation 'org.springframe work.boot:spring-boot-starter-test:2.5.6'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
-
+    testImplementation 'org.apache.httpcomponents:httpclient:4.5.13'
     testCompileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
     testCompileOnly 'org.springframework.boot:spring-boot-starter-test'
