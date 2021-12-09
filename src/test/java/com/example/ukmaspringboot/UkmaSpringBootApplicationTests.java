@@ -8,7 +8,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringBootTest
 class UkmaSpringBootApplicationTests {
-    private MockMvc mockMvc;
+    //    private MockMvc mockMvc;
 //    @BeforeEach
 //    public void setup() throws Exception {
 //        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
