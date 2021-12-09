@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create new course</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/stylesIndex.css" rel="stylesheet">
+    <link href="css/midLayout.css" rel="stylesheet">
+</head>
+
+<body>
+<main class="form-signin text-center">
+    <form id="form">
+        <a><img src="images/logoTrans.png" alt="logo" width="200" class="p-lg-5"></a>
+        <h2 class="font-veryDB">Create new course</h2>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput1" placeholder="Name" name="courseName" required>
+            <label for="floatingInput1">Name</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput2" placeholder="Teacher" name="teacher" required>
+            <label for="floatingInput2">Teacher`s name</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="number" class="form-control" id="floatingInput2" placeholder="Group" name="groupNumber" required>
+            <label for="floatingInput2">Group</label>
+        </div>
+        <br>
+        <select name="year" class="form-select" aria-label="Default select example" required>
+            <option selected value="null">Choose year</option>
+            <option value="1bp">1BP</option>
+            <option value="2bp">2BP</option>
+            <option value="3bp">3BP</option>
+            <option value="4bp">4BP</option>
+            <option value="1mp">1MP</option>
+            <option value="2mp">2MP</option>
+        </select>
+        <select name="day" class="form-select" aria-label="Default select example" required>
+            <option selected value="null">Choose day of week</option>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
+        </select>
+        <select name="time" class="form-select" aria-label="Default select example" required>
+            <option selected value="null">Choose time</option>
+            <option value="1">8:30</option>
+            <option value="2">10:00</option>
+            <option value="3">11:40</option>
+            <option value="4">13:30</option>
+            <option value="5">15:00</option>
+            <option value="6">16:30</option>
+            <option value="7">18:00</option>
+        </select>
+        </div>  
+        <br>
+        <button class="w-100 btn btn-lg hoverButton">Create</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+</main>
+<script src="js/jquery.js"></script>
+<script src="js/hover.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+<script src="js/crud/addCourse.js"></script>
+</body>
+
+</html>

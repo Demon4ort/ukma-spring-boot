@@ -31,11 +31,13 @@ public class LessonController {
         return lessonService.getLessons();
     }
 
+    @CrossOrigin(origins = "http://localhost:8088")
     @PutMapping("/updateLesson")
     public Lesson updateLesson(@RequestBody Lesson lesson) {
         return lessonService.updateLesson(lesson);
     }
 
+    @CrossOrigin(origins = "http://localhost:8088")
     @DeleteMapping("/lesson/{id}")
     public String deleteLesson(@PathVariable Long id) {
         return lessonService.deleteLessonById(id);
