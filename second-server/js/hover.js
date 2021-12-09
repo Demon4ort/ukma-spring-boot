@@ -58,4 +58,20 @@ $(function () {
                 "color": "#f2e9d8"
             });
         });
+        $(".hoverB").hover(
+            function () {
+                $(this).removeClass('font-lBrwn');
+                $(this).css({
+                    transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out ',
+                    "background-color": "#8094a6",
+                    "color": "#1c2f40"
+                });
+            },
+            function () {
+                $(this).css({
+                    transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out',
+                    "background-color": "#1c2f40",
+                    "color": "#f2e9d8"
+                });
+            });
 })
