@@ -45,5 +45,14 @@ public class LessonRepositoryTest {
         AssertionsForInterfaceTypes.assertThat(courses).hasSize(3).contains(l1,l2,l3);
     }
 
+    @Test
+    public void updateLessonTest(){
+        Lesson l1 = new Lesson("monday", "14:00", "3", "name1", "teacher1","3");
+        lessonRepository.save(l1);
+        l1.setDay("tuesday");
+        Lesson updatedLesson = lessonRepository.save(l1);
+        assertThat(updatedLesson.getDay()=="tuesday");
+    }
+
 
 }

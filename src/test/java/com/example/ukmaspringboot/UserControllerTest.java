@@ -1,13 +1,13 @@
 package com.example.ukmaspringboot;
 
 import com.example.ukmaspringboot.controllers.LessonController;
+import com.example.ukmaspringboot.controllers.UserController;
 import com.example.ukmaspringboot.entities.Lesson;
+import com.example.ukmaspringboot.entities.User;
+import com.example.ukmaspringboot.repos.LessonRepository;
 import com.example.ukmaspringboot.repos.UserRepository;
 import com.example.ukmaspringboot.service.LessonService;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.ukmaspringboot.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,7 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -24,36 +24,28 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(LessonController.class)
-public class LessonControllerTest {
+@WebMvcTest(UserController.class)
+public class UserControllerTest {
     @MockBean
     private UserRepository userRepository;
     @MockBean
-    private LessonService lessonService;
+    private LessonRepository lessonRepository;
+    @MockBean
+    private UserService userService;
     @Autowired
     private MockMvc mvc;
     @Test
-    public void givenLessons_whenGetLessons_thenReturnJsonArray() throws Exception {
+    public void givenUsers_whenGetUsers_thenResponseOk() throws Exception {
 
-        given(lessonService.getLessons()).willReturn(List.of(new Lesson()));
+        given(userService.getUsers()).willReturn(new LinkedList<User>());
 
-        mvc.perform(MockMvcRequestBuilders.get("/lessons/lessons")
+        mvc.perform(MockMvcRequestBuilders.get("/users/users")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void createLessonTest() throws Exception{
-        Lesson lesson = new Lesson("name","year","teacher","3","time","ccc");
-
-
-       mvc.perform(MockMvcRequestBuilders.post("/lessons/addLesson")
-                       .contentType(MediaType.APPLICATION_JSON))
-                       .andExpect(status().isBadRequest());
+    public void addUserTest() throws Exception{
 
     }
-
-
-
 }
