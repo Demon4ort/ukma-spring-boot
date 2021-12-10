@@ -1,35 +1,50 @@
 package com.example.ukmaspringboot.entities;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.util.Collection;
+import java.util.Set;
+
 
 @Entity
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
+    @NotBlank(message = "Name cannot be empty")
     private String name;
+    @NotBlank(message = "Surname cannot be empty")
     private String surname;
     private String patronymic;
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email is not correct")
     private String email;
-//    private Long
+    @NotBlank(message = "Year cannot be empty")
     private String year;
-    private String role;
+    @NotBlank(message = "Password cannot be empty")
     private String password;
+
+    private Role role;
 
     public User() {}
 
-    public User(String name, String surname, String patronymic, String email, String year, String role, String password) {
+    public User(String name, String surname, String patronymic, String email, String year, Role role, String password) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.email = email;
         this.year = year;
-        this.role = role;
         this.password = password;
+        this.role = role;
     }
 
     public Long getUserId() {
@@ -80,16 +95,46 @@ public class User {
         this.year = year;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Set.of(new SimpleGrantedAuthority(role.toString()));
     }
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
